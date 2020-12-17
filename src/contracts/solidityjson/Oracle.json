@@ -1,0 +1,1114 @@
+{
+  "contractName": "Betting2",
+	"abi": [
+			{
+				"inputs": [],
+				"payable": false,
+        "stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "contractHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "bettor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "nflWeek",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "betsize",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "teamTaken",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "decOdds",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "teamOffered",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "oddsOffered",
+						"type": "uint256"
+					}
+				],
+				"name": "BetBigRecord",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "contractHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "bettor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "nflWeek",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "betsize",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "teamLong",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "decOdds",
+						"type": "uint256"
+					}
+				],
+				"name": "BetRecord",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256[32]",
+						"name": "decOdds",
+						"type": "uint256[32]"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "nflWeekNum",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "DecOddsPosted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint8[32]",
+						"name": "winner",
+						"type": "uint8[32]"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "nflWeekNum",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "ResultsPosted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint8[32]",
+						"name": "teamOpponent",
+						"type": "uint8[32]"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "nflWeekNum",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "SchedulePosted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256[32]",
+						"name": "starttimes",
+						"type": "uint256[32]"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "nflWeekNum",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "StartTimesPosted",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_minbet",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_maxPos",
+						"type": "uint256"
+					}
+				],
+				"name": "adjustParams",
+				"outputs": [],
+				"payable": false,
+        "stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "team",
+						"type": "uint8"
+					}
+				],
+				"name": "bet",
+				"outputs": [],
+				"payable": true,
+        "stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "team",
+						"type": "uint8"
+					}
+				],
+				"name": "betBig",
+				"outputs": [],
+				"payable": true,
+        "stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "betLong",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "betPayout",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_subkID",
+						"type": "bytes32"
+					}
+				],
+				"name": "checkBet",
+        "outputs": [
+				{
+					"internalType": "uint256",
+					"name": "gameResult",
+					"type": "uint256"
+				},
+				{
+					"internalType": "bool",
+					"name": "openOrder",
+					"type": "bool"
+				}
+			],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "concentrationLimit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "decOdds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "earliestStart",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fundBook",
+				"outputs": [],
+				"payable": true,
+        "stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "inactiveBook",
+				"outputs": [],
+				"payable": false,
+        "stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "subkid2",
+						"type": "bytes32"
+					}
+				],
+				"name": "killBig",
+				"outputs": [],
+				"payable": false,
+        "stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "lpStruct",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint8",
+						"name": "week",
+						"type": "uint8"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "margin",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "minBet",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "nflWeek",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "nonce",
+				"outputs": [
+					{
+						"internalType": "uint32",
+						"name": "",
+						"type": "uint32"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "offercontracts",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "teamTaken",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "teamOffered",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "week",
+						"type": "uint8"
+					},
+					{
+						"internalType": "address",
+						"name": "offeror",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "betAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "payoff",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "offeredPayoff",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "oracleAdmin",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "oracleBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_subkId",
+						"type": "bytes32"
+					}
+				],
+				"name": "redeem",
+				"outputs": [],
+				"payable": false,
+        "stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "sharesToSell",
+						"type": "uint256"
+					}
+				],
+				"name": "sellShares",
+				"outputs": [],
+				"payable": false,
+        "stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8[32]",
+						"name": "winner",
+						"type": "uint8[32]"
+					}
+				],
+				"name": "settle",
+				"outputs": [],
+				"payable": false,
+        "stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "showLPGross",
+				"outputs": [
+					{
+						"internalType": "uint256[32]",
+						"name": "grossExposure",
+						"type": "uint256[32]"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "showLongs",
+				"outputs": [
+					{
+						"internalType": "uint256[32]",
+						"name": "longByTeam",
+						"type": "uint256[32]"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "showMargin",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "unusedCapital",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "usedCapital",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "betCapital",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "oraclBalance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "redeemPot",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "kontractEthBal",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "showOpponents",
+				"outputs": [
+					{
+						"internalType": "uint8[32]",
+						"name": "opponent",
+						"type": "uint8[32]"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "showStartTime",
+				"outputs": [
+					{
+						"internalType": "uint256[32]",
+						"name": "eoBetting",
+						"type": "uint256[32]"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "showdecOddss",
+				"outputs": [
+					{
+						"internalType": "uint256[32]",
+						"name": "xdecOdds",
+						"type": "uint256[32]"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "startTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "subcontracts",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "team",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "week",
+						"type": "uint8"
+					},
+					{
+						"internalType": "address",
+						"name": "bettor",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "betAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "payoff",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "subkid",
+						"type": "bytes32"
+					}
+				],
+				"name": "takeBig",
+				"outputs": [],
+				"payable": true,
+        "stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "teamSchedule",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "teamWeekResult",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalShares",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+        "stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[32]",
+						"name": "_decOdds",
+						"type": "uint256[32]"
+					}
+				],
+				"name": "transmitDecOdds",
+				"outputs": [],
+				"payable": false,
+        "stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8[32]",
+						"name": "_teamSchedule",
+						"type": "uint8[32]"
+					},
+					{
+						"internalType": "uint256[32]",
+						"name": "_startTime",
+						"type": "uint256[32]"
+					},
+					{
+						"internalType": "uint256[32]",
+						"name": "_decOdds",
+						"type": "uint256[32]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "earlyStart",
+						"type": "uint256"
+					}
+				],
+				"name": "transmitInit",
+				"outputs": [],
+				"payable": false,
+        "stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+ "networks": {
+   "4": {
+     "events" : [
+       {
+         "anonymous": false,
+         "inputs": [
+           {
+             "indexed": true,
+             "internalType": "bytes32",
+             "name": "contractHash",
+             "type": "bytes32"
+           },
+           {
+             "indexed": true,
+             "internalType": "address",
+             "name": "bettor",
+             "type": "address"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint8",
+             "name": "nflWeek",
+             "type": "uint8"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint256",
+             "name": "timestamp",
+             "type": "uint256"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint256",
+             "name": "betsize",
+             "type": "uint256"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint8",
+             "name": "teamTaken",
+             "type": "uint8"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint256",
+             "name": "decOdds",
+             "type": "uint256"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint8",
+             "name": "teamOffered",
+             "type": "uint8"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint256",
+             "name": "oddsOffered",
+             "type": "uint256"
+           }
+         ],
+         "name": "BetBigRecord",
+         "type": "event"
+       },
+       {
+         "anonymous": false,
+         "inputs": [
+           {
+             "indexed": true,
+             "internalType": "bytes32",
+             "name": "contractHash",
+             "type": "bytes32"
+           },
+           {
+             "indexed": true,
+             "internalType": "address",
+             "name": "bettor",
+             "type": "address"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint8",
+             "name": "nflWeek",
+             "type": "uint8"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint256",
+             "name": "timestamp",
+             "type": "uint256"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint256",
+             "name": "betsize",
+             "type": "uint256"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint8",
+             "name": "teamLong",
+             "type": "uint8"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint256",
+             "name": "decOdds",
+             "type": "uint256"
+           }
+         ],
+         "name": "BetRecord",
+         "type": "event"
+       },
+       {
+         "anonymous": false,
+         "inputs": [
+           {
+             "indexed": false,
+             "internalType": "uint256[32]",
+             "name": "decOdds",
+             "type": "uint256[32]"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint8",
+             "name": "nflWeekNum",
+             "type": "uint8"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint256",
+             "name": "timestamp",
+             "type": "uint256"
+           }
+         ],
+         "name": "DecOddsPosted",
+         "type": "event"
+       },
+       {
+         "anonymous": false,
+         "inputs": [
+           {
+             "indexed": false,
+             "internalType": "uint8[32]",
+             "name": "winner",
+             "type": "uint8[32]"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint8",
+             "name": "nflWeekNum",
+             "type": "uint8"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint256",
+             "name": "timestamp",
+             "type": "uint256"
+           }
+         ],
+         "name": "ResultsPosted",
+         "type": "event"
+       },
+       {
+         "anonymous": false,
+         "inputs": [
+           {
+             "indexed": false,
+             "internalType": "uint8[32]",
+             "name": "teamOpponent",
+             "type": "uint8[32]"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint8",
+             "name": "nflWeekNum",
+             "type": "uint8"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint256",
+             "name": "timestamp",
+             "type": "uint256"
+           }
+         ],
+         "name": "SchedulePosted",
+         "type": "event"
+       },
+       {
+         "anonymous": false,
+         "inputs": [
+           {
+             "indexed": false,
+             "internalType": "uint256[32]",
+             "name": "starttimes",
+             "type": "uint256[32]"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint8",
+             "name": "nflWeekNum",
+             "type": "uint8"
+           },
+           {
+             "indexed": false,
+             "internalType": "uint256",
+             "name": "timestamp",
+             "type": "uint256"
+           }
+         ],
+         "name": "StartTimesPosted",
+         "type": "event"
+       }]
+ }
+},
+"address": "0x6d0E465730e51B34C679698De33fB5Bc9daaEE55"
+}
