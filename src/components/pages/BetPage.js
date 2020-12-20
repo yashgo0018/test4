@@ -68,7 +68,6 @@ class BetPagejs extends Component {
   }
 
   handleBetSize(betAmount) {
-    console.log("A");
     this.setState({ betAmount });
   }
 
@@ -78,7 +77,6 @@ class BetPagejs extends Component {
   }
 
   handletakeBookTeam(teamPick) {
-    console.log("B");
     this.setState({ teamPick });
   }
 
@@ -97,7 +95,7 @@ class BetPagejs extends Component {
   }
 
   switchOdds() {
-    console.log("C");
+
     this.setState({ showDecimalOdds: !this.state.showDecimalOdds });
   }
 
@@ -117,7 +115,7 @@ class BetPagejs extends Component {
   }
 
   getbetHistoryArray(id) {
-    // console.log("Hello")
+
     const web3b = this.context.drizzle.web3
     const contractweb3b = new web3b.eth.Contract(Football.abi, Football.address);
     var eventdata = [];
@@ -148,18 +146,18 @@ class BetPagejs extends Component {
           .checkRedeem.cacheCall(element.returnValues.contractHash)
       }, this);
       this.betHistory[id] = eventdata
-      console.log(this.betHistory)
+
       this.takekeys = takes
     }.bind(this))
   }
 
   radioMatchHome(teampic) {
-    console.log("D");
+
     this.setState({ matchPick: teampic, teamPick: 0 })
   }
 
   radioMatchAway(teampic) {
-    console.log("E");
+
     this.setState({ matchPick: teampic, teamPick: 1 })
   }
 
@@ -264,7 +262,7 @@ class BetPagejs extends Component {
   }
 
   render() {
-    console.log("render");
+
     let concentrationLimit = 0;
     if (this.concKey in this.props.contracts["FOOT0Swap"].concentrationLimit) {
       concentrationLimit = this.props.contracts["FOOT0Swap"].concentrationLimit[this.concKey].value
@@ -356,7 +354,7 @@ class BetPagejs extends Component {
     let netLiab = [];
     netLiab = [homeLiab, awayLiab];
 
-    //  console.log("schedString", netLiab[0]);
+
     let teamSplit = [];
     //  let dayOfWeek =[];
 
@@ -425,7 +423,7 @@ class BetPagejs extends Component {
       );
     }
 
-    //  console.log("subcon", subcontracts);
+
     return (
       <div>
         <VBackgroundCom />
