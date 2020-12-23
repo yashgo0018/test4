@@ -5,12 +5,7 @@ import { autoBind } from 'react-extras'
 import Text from '../basics/Text'
 import IndicatorD from "../basics/IndicatorD"
 import Football from '../../contracts/solidityjson/Football.json'
-import {
-  Box,
-  Flex
-} from '@rebass/grid'
-var moment = require("moment");
-var momentTz = require("moment-timezone");
+import moment from 'moment';
 
 class EventOdds extends Component {
 
@@ -19,9 +14,9 @@ class EventOdds extends Component {
     autoBind(this)
 
     this.assets = [{
-        contract: context.drizzle.contracts.FOOT0Swap,
-        id: 0
-      }
+      contract: context.drizzle.contracts.FOOT0Swap,
+      id: 0
+    }
     ]
 
     this.state = {
@@ -41,13 +36,13 @@ class EventOdds extends Component {
 
 
   componentDidMount() {
-    document.title='Posted Odds Event Logs';
-    Object.keys(this.assets).forEach(function(asset) {
-        this.getbetHistoryArray(asset)
-      }, this);
+    document.title = 'Posted Odds Event Logs';
+    Object.keys(this.assets).forEach(function (asset) {
+      this.getbetHistoryArray(asset)
+    }, this);
   }
 
-  timeConverter(UNIX_timestamp){
+  timeConverter(UNIX_timestamp) {
     var a = new Date(UNIX_timestamp * 1000);
     var year = a.getFullYear();
     var month = a.getMonth();
@@ -55,7 +50,7 @@ class EventOdds extends Component {
     var hour = a.getHours();
     var min = a.getMinutes();
     var sec = a.getSeconds();
-    var time = date + '/' + month + '/' + year + ' ' + hour + ':' + min;
+    var time = `${date}/${month}/${year} ${hour}:${min}:${sec}`;
     return time;
   }
 
@@ -70,22 +65,23 @@ class EventOdds extends Component {
         fromBlock: 6000123,
         toBlock: 'latest'
       }
-    ).then(function(events) {
+    ).then(function (events) {
 
-      events.forEach(function(element) {
+      events.forEach(function (element) {
         pricedata.push({
           decOdds: element.returnValues.decOdds,
           Epoch: element.returnValues.epoch,
-          time: element.returnValues.timestamp})
+          time: element.returnValues.timestamp
+        })
 
-    }, this);
+      }, this);
       this.priceHistory[id] = pricedata
     }.bind(this))
   }
 
 
   openEtherscan() {
-     const url = "https://rinkeby.etherscan.io/address/0xBA8f31a128f1CF6f1A50B87DAeee0AE1e1cf98f3";
+    const url = "https://rinkeby.etherscan.io/address/0xBA8f31a128f1CF6f1A50B87DAeee0AE1e1cf98f3";
     // new const url = "https://ropsten.etherscan.io/address/0xc9c61e5Ec1b7E7Af5Ccb91b6431733dE6d62cAC3#code";
     window.open(url, "_blank");
   }
@@ -100,58 +96,57 @@ class EventOdds extends Component {
     if (Object.keys(this.priceHistory).length === 0)
       return (
         <Text size="20px" weight="200">Waiting...</Text>
-        )
-    else
-    {
+      )
+    else {
       return (
         <div>
-            <IndicatorD
-              className="etherscanLink"
-              size="15px"
-              mr="10px"
-              mb="10px"
-              ml="5px"
-              mt="10px"
-              width="360px"
-              label="See Contract on"
-              onClick={() => this.openEtherscan()}
-              value="Etherscan"
-            />
-            {Object.keys(this.priceHistory).map((id) => (
-              <div key={id} style={{ width: "100%", float: "left" }}>
-                <Text size="12px" weight="200">
-                  {" "}
+          <IndicatorD
+            className="etherscanLink"
+            size="15px"
+            mr="10px"
+            mb="10px"
+            ml="5px"
+            mt="10px"
+            width="360px"
+            label="See Contract on"
+            onClick={() => this.openEtherscan()}
+            value="Etherscan"
+          />
+          {Object.keys(this.priceHistory).map((id) => (
+            <div key={id} style={{ width: "100%", float: "left" }}>
+              <Text size="12px" weight="200">
+                {" "}
                   Time, Week, match0, match1, match2, match3, match4, match5, match6, match7, match8, match9,
                   match10, match11, match12, match13, match14, match15
                 </Text>{" "}
-                <br />
-                {this.priceHistory[id].map((event, index) => (
-                  <div key={index}>
-                    <Text size="12px" weight="200">
-                      {" "}
-                      {moment.unix(event.time).format("DD-MM-YYTHH:mm")},{" "}
-                      {event.Epoch},
+              <br />
+              {this.priceHistory[id].map((event, index) => (
+                <div key={index}>
+                  <Text size="12px" weight="200">
+                    {" "}
+                    {moment.unix(event.time).format("DD-MM-YYTHH:mm")},{" "}
+                    {event.Epoch},
                       {event.decOdds[0]},{" "}
-                      {event.decOdds[1]}, {event.decOdds[2]},{" "}
-                      {event.decOdds[3]}, {event.decOdds[4]},{" "}
-                      {event.decOdds[5]}, {event.decOdds[6]},{" "}
-                      {event.decOdds[7]}, {event.decOdds[8]},{" "}
-                      {event.decOdds[9]}, {event.decOdds[10]},{" "}
-                      {event.decOdds[11]}, {event.decOdds[12]},{" "}
-                      {event.decOdds[13]}, {event.decOdds[14]},{" "}
-                      {event.decOdds[15]}, {event.decOdds[16]},{" "}
-                      {event.decOdds[17]}, {event.decOdds[18]},{" "}
-                      {event.decOdds[19]}, {event.decOdds[20]},{" "}
-                      {event.decOdds[21]}, {event.decOdds[22]},{" "}
-                      {event.decOdds[23]}, {event.decOdds[24]},{" "}
-                      {event.decOdds[25]}, {event.decOdds[26]},{" "}
-                      {event.decOdds[27]}, {event.decOdds[28]},{" "}
-                      {event.decOdds[29]}, {event.decOdds[30]},
+                    {event.decOdds[1]}, {event.decOdds[2]},{" "}
+                    {event.decOdds[3]}, {event.decOdds[4]},{" "}
+                    {event.decOdds[5]}, {event.decOdds[6]},{" "}
+                    {event.decOdds[7]}, {event.decOdds[8]},{" "}
+                    {event.decOdds[9]}, {event.decOdds[10]},{" "}
+                    {event.decOdds[11]}, {event.decOdds[12]},{" "}
+                    {event.decOdds[13]}, {event.decOdds[14]},{" "}
+                    {event.decOdds[15]}, {event.decOdds[16]},{" "}
+                    {event.decOdds[17]}, {event.decOdds[18]},{" "}
+                    {event.decOdds[19]}, {event.decOdds[20]},{" "}
+                    {event.decOdds[21]}, {event.decOdds[22]},{" "}
+                    {event.decOdds[23]}, {event.decOdds[24]},{" "}
+                    {event.decOdds[25]}, {event.decOdds[26]},{" "}
+                    {event.decOdds[27]}, {event.decOdds[28]},{" "}
+                    {event.decOdds[29]}, {event.decOdds[30]},
                       {event.decOdds[31]}
-                    </Text>
-                    <br />
-                  </div>
-                ))}
+                  </Text>
+                  <br />
+                </div>
+              ))}
             </div>
           ))}
         </div>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { drizzleConnect } from '@drizzle/react-plugin'
 import PropTypes from 'prop-types'
 import Logo from '../basics/Logo'
 import { Flex, Box } from '@rebass/grid'
@@ -12,36 +11,34 @@ import excelSheet from "../whitepaper/sportEthData.xlsx"
 
 
 class Splash extends Component {
-
   constructor(props, context) {
     super(props)
     autoBind(this)
 
     this.state = {
-        contracts: [
-            {
-                asset: "NFL",
-                id: 0
-            }
-        ],
-        chartSymbols: ["SP:FOOT1", "BTCUSD"]
+      contracts: [
+        {
+          asset: "NFL",
+          id: 0
+        }
+      ],
+      chartSymbols: ["SP:FOOT1", "BTCUSD"]
     }
-
   }
 
   openWhitepaper() {
-      console.log("Opened whitepaper")
-      // TODO
+    console.log("Opened whitepaper")
+    // TODO
   }
 
   openCheatSpreadsheet() {
-      console.log("Opened cheat spreadsheet")
-      // TODO
+    console.log("Opened cheat spreadsheet")
+    // TODO
   }
 
   openSimulationSheet() {
-      console.log("Opened simulation sheet")
-      // TODO
+    console.log("Opened simulation sheet")
+    // TODO
   }
 
   openContract(id) {
@@ -49,9 +46,7 @@ class Splash extends Component {
     // TODO
   }
 
-
   render() {
-
     return (
       <div>
         <VBackground />
@@ -77,7 +72,7 @@ class Splash extends Component {
                 // height="100%"
                 className="nav-header-wrap"
               >
-                {}
+                { }
                 <Flex
                   flexWrap="wrap"
                   width="100%"
@@ -86,7 +81,7 @@ class Splash extends Component {
                   style={{ cursor: "pointer" }}
                   variant="nav"
                 >
-                  {}
+                  { }
                   <Flex
                     alignItems="center"
                     height="100%"
@@ -117,7 +112,8 @@ class Splash extends Component {
                           cursor: "pointer",
                         }}
                         href="https://rinkeby.etherscan.io/address/0x30c7649ef1c9659458750c88cee0bac2f75238c9"
-                        target= "_blank"
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         EtherScan
                       </a>
@@ -157,7 +153,7 @@ class Splash extends Component {
                           cursor: "pointer",
                         }}
                         href="http://github.com/efalken/SportEth"
-                        //    href="FAQ.js"
+                      //    href="FAQ.js"
                       >
                         Github Project
                       </a>
@@ -172,9 +168,9 @@ class Splash extends Component {
               width={1}
               justifyContent="center"
               alignItems="center"
-              // style={{
-              //     height: "calc(100vh - 90px)"
-              // }}
+            // style={{
+            //     height: "calc(100vh - 90px)"
+            // }}
             >
               <Box mt="50px">
                 <Flex
@@ -185,7 +181,7 @@ class Splash extends Component {
                   flexDirection="column"
                   alignItems="center"
                 >
-                  {this.state.contracts.map((contract) => contract.asset == "NFL" ? (
+                  {this.state.contracts.map((contract) => contract.asset === "NFL" ? (
                     <Box mr="20px" mb="20px" key={contract.id}>
                       <SplashDrizzleContract
                         showActions={true}
@@ -195,7 +191,7 @@ class Splash extends Component {
                         id={contract.id}
                       />
                     </Box>
-                  ) : null )}
+                  ) : null)}
                 </Flex>
               </Box>
             </Flex>
@@ -207,7 +203,7 @@ class Splash extends Component {
           </Flex>
         </Box>
 
-        <div className="footer-links-wrapper" style={{width: "115%"}}>
+        <div className="footer-links-wrapper" style={{ width: "115%" }}>
           <Flex width="100%" alignItems="center" justifyContent="center">
             <Text size="20px">
               <a

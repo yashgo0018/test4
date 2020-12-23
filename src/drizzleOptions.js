@@ -2,10 +2,6 @@
 import Football from './contracts/solidityjson/Football.json'
 // import OracleNFL from './../contracts/solidityjson/Admin.json'
 
-
-
-const Web3 = require('web3');
-
 const drizzleOptions = {
   web3: {
     block: false,
@@ -30,11 +26,12 @@ const drizzleOptions = {
       'DecOddsPosted',
       'SchedulePosted',
       'BetRecord',
-      'BetBigRecord']
+      'BetBigRecord'
+    ]
   },
   polls: {
     accounts: 1500
   }
 }
 
-export default drizzleOptions
+export default drizzleOptions;

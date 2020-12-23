@@ -18,7 +18,7 @@ import ButtonI from '../basics/ButtonI.js';
 import TruncatedAddress from '../basics/TruncatedAddress.js';
 import VBackgroundCom from '../basics/VBackgroundCom'
 import Football from '../../contracts/solidityjson/Football.json'
-var moment = require("moment");
+import moment from 'moment';
 
 
 class BetPagejs extends Component {
@@ -85,7 +85,7 @@ class BetPagejs extends Component {
   }
 
   takeBet() {
-    const stackId = this.contracts[
+    this.contracts[
       "FOOT0Swap"
     ].methods.bet.cacheSend(
       this.state.matchPick, this.state.teamPick, {
@@ -95,12 +95,11 @@ class BetPagejs extends Component {
   }
 
   switchOdds() {
-
     this.setState({ showDecimalOdds: !this.state.showDecimalOdds });
   }
 
   redeemBet(x) {
-    const stackId = this.contracts["FOOT0Swap"].methods.redeem.cacheSend(x, {
+    this.contracts["FOOT0Swap"].methods.redeem.cacheSend(x, {
       from: this.props.accounts[0]
     });
   }
@@ -115,7 +114,6 @@ class BetPagejs extends Component {
   }
 
   getbetHistoryArray(id) {
-
     const web3b = this.context.drizzle.web3
     const contractweb3b = new web3b.eth.Contract(Football.abi, Football.address);
     var eventdata = [];
@@ -152,12 +150,10 @@ class BetPagejs extends Component {
   }
 
   radioMatchHome(teampic) {
-
     this.setState({ matchPick: teampic, teamPick: 0 })
   }
 
   radioMatchAway(teampic) {
-
     this.setState({ matchPick: teampic, teamPick: 1 })
   }
 
@@ -280,12 +276,6 @@ class BetPagejs extends Component {
       }
     }, this);
 
-
-    let minBet = 0;
-    if (this.minBetKey in this.props.contracts["FOOT0Swap"].minBet) {
-      minBet = this.props.contracts["FOOT0Swap"].minBet[this.minBetKey].value
-    }
-
     let unusedCapital = "0";
     if (this.unusedKey in this.props.contracts["FOOT0Swap"].margin) {
       unusedCapital = web3.fromWei(this.props.contracts["FOOT0Swap"].margin[this.unusedKey].value.toString(), "szabo")
@@ -364,7 +354,6 @@ class BetPagejs extends Component {
     }
 
     let firstSixteenTeams = [];
-    let secondSixteenTeams = [];
 
     for (let i = 0; i < 32; i++) {
       firstSixteenTeams.push(
@@ -593,7 +582,7 @@ class BetPagejs extends Component {
                             {this.betHistory[id].map((event, index) =>
                               (subcontracts[event.Hashoutput]) &&
                               (
-                                <tr key={event, index} style={{ width: "33%" }}>
+                                <tr key={(event, index)} style={{ width: "33%" }}>
                                   <td>{event.Epoch}</td>
                                   <td>{event.MatchNum}</td>
                                   <td>{event.LongPick}</td>

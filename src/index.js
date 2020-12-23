@@ -12,6 +12,7 @@ import routes from './Routes'
 import store from './state/store'
 import drizzleOptions from './drizzleOptions'
 import { Provider } from 'react-redux';
+import reportWebVitals from './reportWebVitals'
 
 // Initialize react-router-redux.
 const history = syncHistoryWithStore(browserHistory, store)
@@ -47,3 +48,5 @@ let applicationElement = (
 );
 
 ReactDOM.render((pathname === "/") ? splashElement : applicationElement, document.getElementById('root'))
+
+reportWebVitals();

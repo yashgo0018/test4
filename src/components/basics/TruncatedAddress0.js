@@ -1,13 +1,12 @@
 import React from 'react';
 import Text from './Text'
 
-export default
-  ({ addr, start, end, transform, spacing, big }) =>
-    <Text>
-      {addr.substring(0, 2) + addr.substring(2, start).toUpperCase() + "..." +
-        addr.substring(addr.length - end, addr.length).toUpperCase()}
-    </Text>
-
+export default function TruncatedAddress0({ addr, start, end, transform, spacing, big }) {
+  return <Text>
+    {addr.substring(0, 2) + addr.substring(2, start).toUpperCase() + "..." +
+      addr.substring(addr.length - end, addr.length).toUpperCase()}
+  </Text>
+}
 
 /*class TruncatedAddress extends React.Component {
 
